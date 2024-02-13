@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>logo.ico</file>
+        <file>huella_gris.png</file>
+        <file>huella_roja.png</file>
+        <file>huella_verde.png</file>
+        <file>huella_azul.png</file>
+        <file>logo.png</file>
+        <file>ent.png</file>
+        <file>sal.png</file>
+        <file>folder.png</file>
+        <file>correo.png</file>
+    </qresource>
+</RCC>
