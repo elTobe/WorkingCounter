@@ -3,7 +3,6 @@
 #include "asistenciasuper.h"
 #include "ui_asistenciasuper.h"
 #include "mensaje.h"
-#include "SMTP/SmtpMime"
 #include <QDebug>
 #include <QDir>
 #include <QMessageBox>
