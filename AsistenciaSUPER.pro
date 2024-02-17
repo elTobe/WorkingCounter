@@ -32,6 +32,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 LIBS += -L$$PWD/fingerReaderSDK/lib/ -lDPFPApi -ldpHMatch -ldpHFtrEx -lDPFpUI
+
 PRE_TARGETDEPS += $$PWD/fingerReaderSDK/lib/DPFPApi.lib
 PRE_TARGETDEPS += $$PWD/fingerReaderSDK/lib/dpHMatch.lib
 PRE_TARGETDEPS += $$PWD/fingerReaderSDK/lib/dpHFtrEx.lib
