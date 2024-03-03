@@ -1,0 +1,20 @@
+
+////////////////////////////////////////////////////
+
+Para agregar nuevos empleados :
+
+> Cierre la aplicacion de AsistenciaSUPER, haciendo doble click derecho en el icono de la aplicacion en la barra de tareas a la derecha, y cick en cerrar
+> Dentro de la carpeta de trabajadores, cree una carpeta con el nombre del trabajador. Este nombre de preferencia nunca se debe cambiar.
+> Abra AgregarHuella.exe.
+> Genere un archivo de huella digital haciendo click en el primer boton, y escaneando el dedo a agregar 4 veces
+> Guarde el archivo en la carpeta creada anteriormente, haciendo click en el tercer boton, y pongale un nombre, yo sugiero que sea el nombre del dedo que escaneo.
+> Vuelva a abrir el programa de AsistenciaSUPER.exe
+
+////////////////////////////////////////////////////
+
+Para eliminar empleados :
+
+> Cierre AsistenciaSUPER
+> Borre la carpeta del empleado dentro de la carpeta de trabajadores
+> Reabra AsistenciaSUPER.exe
+

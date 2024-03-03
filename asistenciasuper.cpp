@@ -15,6 +15,7 @@
 #include <QDesktopServices>
 #include <QInputDialog>
 #include <QStringList>
+#include <SMTP/SmtpMime>
 
 AsistenciaSuper::AsistenciaSuper(QWidget *parent)
     : QMainWindow(parent)
@@ -1055,7 +1056,53 @@ void AsistenciaSuper::on_boton_quitar_registro_clicked()
 }
 
 void AsistenciaSuper::enviar_correo(){
+    // This is a first demo application of the SmtpClient for Qt project
 
+    // Now we create a MimeMessage object. This is the email.
+
+    MimeMessage message;
+
+    EmailAddress sender("perrusquia832@gmail.com", "el beto");
+    message.setSender(sender);
+
+    EmailAddress to("supervazq@gmail.com", "la natys");
+    message.addRecipient(to);
+
+    message.setSubject("SmtpClient for Qt - Demo");
+
+    // Now add some text to the email.
+    // First we create a MimeText object.
+
+    MimeText text;
+
+    text.setText("Hi,\nThis is a simple email message.\n");
+
+    // Now add it to the mail
+
+    message.addPart(&text);
+
+    // Now we can send the mail
+    SmtpClient smtp("smtp.gmail.com", 25, SmtpClient::SslConnection);
+
+    smtp.connectToHost();
+    if (!smtp.waitForReadyConnected()) {
+        qDebug() << "Failed to connect to host!";
+        return;
+    }
+
+    smtp.login("your_email_address@host.com", "your_password");
+    if (!smtp.waitForAuthenticated()) {
+        qDebug() << "Failed to login!";
+        return;
+    }
+
+    smtp.sendMail(message);
+    if (!smtp.waitForMailSent()) {
+        qDebug() << "Failed to send mail!";
+        return;
+    }
+
+    smtp.quit();
 }
 
 void AsistenciaSuper::on_boton_correo_clicked()
