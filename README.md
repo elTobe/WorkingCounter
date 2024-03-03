@@ -2,7 +2,7 @@
 
 WorkingCounter es una aplicación desarrollada en Qt 5.15.2 y MSVC 2019 que permite a los trabajadores registrar sus horas de entrada y salida utilizando un lector de huellas digitales U.are.U 4500. El programa cuenta las horas trabajadas, guarda horas extra y las acumula hasta completar nuevos días laborables. También indica cuántos días se han trabajado para el pago y puede ejecutarse en la bandeja del sistema para una mayor comodidad, mostrando las entradas y salidas en pantalla completa cuando se detectan en segundo plano. 
 
-![WorkingCounter](doc/img/screenshot1.PNG)
+![WorkingCounter](doc/img/sceenshot1.PNG)
 
 ## Requisitos
 
