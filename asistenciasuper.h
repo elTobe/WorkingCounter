@@ -19,6 +19,10 @@
 #include <QTimer>
 #include "mensaje.h"
 
+#include "SMTPClient/email.h"
+#include "SMTPClient/smtpclient.h"
+#include "SMTPClient/emailaddress.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class AsistenciaSuper; }
 QT_END_NAMESPACE
@@ -108,6 +112,8 @@ private slots:
     void on_boton_correo_clicked();
 
     void enviar_correo();
+
+    void onStatus(Status::e status, QString errorMessage);
 
 private:
 

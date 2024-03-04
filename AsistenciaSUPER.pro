@@ -6,6 +6,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
+include( $$PWD/SMTPClient/SMTPClient.pri )
+
 INCLUDEPATH += $$PWD/fingerReaderSDK/include
 DEPENDPATH += $$PWD/fingerReaderSDK/include
 
@@ -32,7 +34,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 LIBS += -L$$PWD/fingerReaderSDK/lib/ -lDPFPApi -ldpHMatch -ldpHFtrEx -lDPFpUI
-LIBS += -L$$PWD/SMTP/lib -lSmtpMime2
 
 PRE_TARGETDEPS += $$PWD/fingerReaderSDK/lib/DPFPApi.lib
 PRE_TARGETDEPS += $$PWD/fingerReaderSDK/lib/dpHMatch.lib

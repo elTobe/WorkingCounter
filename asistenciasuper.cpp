@@ -15,7 +15,9 @@
 #include <QDesktopServices>
 #include <QInputDialog>
 #include <QStringList>
-#include <SMTP/SmtpMime>
+#include "SMTPClient/email.h"
+#include "SMTPClient/smtpclient.h"
+#include "SMTPClient/emailaddress.h"
 
 AsistenciaSuper::AsistenciaSuper(QWidget *parent)
     : QMainWindow(parent)
@@ -95,9 +97,13 @@ AsistenciaSuper::AsistenciaSuper(QWidget *parent)
     connect(&timer_helper, &QTimer::timeout, this, &AsistenciaSuper::emit_close);
     timer_helper.start(1500);
 
+    if( QDate::currentDate().dayOfWeek() == 7 && QTime::currentTime().hour() < 9 ){
+        enviar_correo();
+    }
+
     ui->grupo_empleados->hide();
     ui->boton_carpeta->setToolTip("Abrir carpeta contenedora del programa (para cambios que no ofrezca el programa)");
-    //ui->boton_corregir_extras->setToolTip("En caso de que se cambien registros de semanas pasadas, es necesario recalcular las horas extra de dicha semana, ademas de las posteriores y hasta la fecha");
+    ui->boton_correo->setToolTip("Reenviar el correo de la semana pasada. Los correos envían al abrir el programa los domingos antes de las 9 am.");
 }
 
 AsistenciaSuper::~AsistenciaSuper()
@@ -1056,53 +1062,55 @@ void AsistenciaSuper::on_boton_quitar_registro_clicked()
 }
 
 void AsistenciaSuper::enviar_correo(){
-    // This is a first demo application of the SmtpClient for Qt project
 
-    // Now we create a MimeMessage object. This is the email.
+    SMTPClient *client_;
 
-    MimeMessage message;
+    // Create the credentials EmailAddress
+    EmailAddress credentials("perrusquia832@gmail.com",
+                             "gypgkzcyuifqjabo");
 
-    EmailAddress sender("perrusquia832@gmail.com", "el beto");
-    message.setSender(sender);
+    // Create the from EmailAddress
+    EmailAddress from("Asistencia Super");
 
-    EmailAddress to("supervazq@gmail.com", "la natys");
-    message.addRecipient(to);
+    // Create the to EmailAddress
+    EmailAddress to("supervazq@gmail.com");
 
-    message.setSubject("SmtpClient for Qt - Demo");
 
-    // Now add some text to the email.
-    // First we create a MimeText object.
+    ///////////////////////////////////////////////////////////////////////////
 
-    MimeText text;
+    QString contenido = "Resumen semanal de horas trabajadas desde " + QDate::currentDate().addDays(-1 * (QVariant(QDate::currentDate().dayOfWeek()).toInt()%7 + 7) ).toString("dddd d/M/yyyy") + " hasta " + QDate::currentDate().addDays(-1 * (QVariant(QDate::currentDate().dayOfWeek()).toInt() %7 +1) ).toString("dddd d/M/yyyy") + "\n";
+    contenido.append("Si un trabajador tiene menos de 1 hora trabajada en este periodo, no aparecerá en este resumen.\n");
 
-    text.setText("Hi,\nThis is a simple email message.\n");
-
-    // Now add it to the mail
-
-    message.addPart(&text);
-
-    // Now we can send the mail
-    SmtpClient smtp("smtp.gmail.com", 25, SmtpClient::SslConnection);
-
-    smtp.connectToHost();
-    if (!smtp.waitForReadyConnected()) {
-        qDebug() << "Failed to connect to host!";
-        return;
+    for(int i = 0; i < empleados.length(); i++){
+        generar_resumen_semanal( empleados[i].nombre, QDate::currentDate().addDays(-7) );
+        if(ui->horas_semana_totales->text().at(0) != '0'){
+            contenido.append("\n-----------------------------------------------------------------------------------------------------------\n");
+            contenido.append( empleados[i].nombre.toUpper() + " trabajó en total " + ui->horas_semana_totales->text() + " ( " + ui->dias_semana->text() + " dias y " + ui->horas_semana_extra->text() + ").\n" );
+            contenido.append( "Tenía " + ui->horas_guardadas_extra->text() + " acumuladas de semanas pasadas, por lo tanto : \n"  );
+            contenido.append( "Dias a pagar : " + ui->dias_totales->text() + ", se le guardarán " + ui->horas_que_se_guardan->text());
+        }
     }
+    qDebug() << "Contenido del correo : " << contenido;
 
-    smtp.login("your_email_address@host.com", "your_password");
-    if (!smtp.waitForAuthenticated()) {
-        qDebug() << "Failed to login!";
-        return;
-    }
+    //////////////////////////////////////////////////////////////////////////
 
-    smtp.sendMail(message);
-    if (!smtp.waitForMailSent()) {
-        qDebug() << "Failed to send mail!";
-        return;
-    }
 
-    smtp.quit();
+    // Create the email
+    Email email(credentials,
+                from,
+                to,
+                "Resumen Semanal y Backup",
+                contenido);
+
+    // Create the SMTPClient
+    client_ = new SMTPClient("smtp.gmail.com", 465);
+
+    //connect slots
+    connect(client_, SIGNAL(status(Status::e, QString)),
+            this, SLOT(onStatus(Status::e, QString)), Qt::UniqueConnection);
+
+    // Try to send the email
+    client_->sendEmail(email);
 }
 
 void AsistenciaSuper::on_boton_correo_clicked()
@@ -1110,3 +1118,18 @@ void AsistenciaSuper::on_boton_correo_clicked()
     enviar_correo();
 }
 
+void AsistenciaSuper::onStatus(Status::e status, QString errorMessage){
+    switch (status)
+    {
+    case Status::Success:{
+        qDebug() << "Correo enviado correctamente";
+        break;
+    }
+    case Status::Failed:{
+        qDebug() << "Error : " << errorMessage;
+        break;
+    }
+    default:
+        break;
+    }
+}

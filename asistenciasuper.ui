@@ -295,7 +295,7 @@
             <item row="3" column="4">
              <widget class="QPushButton" name="boton_correo">
               <property name="text">
-               <string>Correo</string>
+               <string>Correo (ult. sem)</string>
               </property>
               <property name="icon">
                <iconset resource="images.qrc">
