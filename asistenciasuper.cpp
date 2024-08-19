@@ -102,6 +102,8 @@ AsistenciaSuper::AsistenciaSuper(QWidget *parent)
     }
 
     ui->grupo_empleados->hide();
+    ui->check_detalle->setChecked(true);
+    ui->check_detalle->setChecked(false);
     ui->boton_carpeta->setToolTip("Abrir carpeta contenedora del programa (para cambios que no ofrezca el programa)");
     ui->boton_correo->setToolTip("Reenviar el correo de la semana pasada. Los correos envían al abrir el programa los domingos antes de las 9 am.");
 }
@@ -294,6 +296,7 @@ void AsistenciaSuper::generar_resumen_hoy(){
     ui->dias_totales->setText( "N/A" );
     ui->horas_que_se_guardan->setText( "N/A" );
     ui->horas_faltantes->setText("N/A");
+    ui->salida_esperada->setText("N/A");
 
     historial.end();
     ui->historial->setPixmap(historial_pixmap);
@@ -516,6 +519,7 @@ void AsistenciaSuper::generar_resumen_semanal(QString nombre, QDate fecha){
     ui->dias_totales->setText( temp.setNum( (float) dias_totales, 'f', 0 ) );
 
     ui->horas_faltantes->setText( set_texto_entendible(horas_dia - horas_a_guardar ) );
+    ui->salida_esperada->setText( QTime::currentTime().addSecs( 3600 * (horas_dia - horas_a_guardar ) + 60 ).toString("hh:mm ap") );
     ui->horas_semana_totales->setText( set_texto_entendible(horas_totales) );
     ui->horas_semana_extra->setText( set_texto_entendible(horas_semana) );
     ui->horas_guardadas_extra->setText( set_texto_entendible(horas_guardadas) );
@@ -1133,3 +1137,30 @@ void AsistenciaSuper::onStatus(Status::e status, QString errorMessage){
         break;
     }
 }
+
+void AsistenciaSuper::on_check_detalle_stateChanged(int arg1)
+{
+    if( ui->check_detalle->isChecked() ){
+        ui->horas_semana_totales->setVisible(true);
+        ui->horas_semana_extra->setVisible(true);
+        ui->dias_semana->setVisible(true);
+        ui->horas_que_se_guardan->setVisible(true);
+
+        ui->horas_semana_totales_text->setVisible(true);
+        ui->horas_semana_extra_text->setVisible(true);
+        ui->dias_semana_text->setVisible(true);
+        ui->horas_que_se_guardan_text->setVisible(true);
+
+    }else{
+        ui->horas_semana_totales->setVisible(false);
+        ui->horas_semana_extra->setVisible(false);
+        ui->dias_semana->setVisible(false);
+        ui->horas_que_se_guardan->setVisible(false);
+
+        ui->horas_semana_totales_text->setVisible(false);
+        ui->horas_semana_extra_text->setVisible(false);
+        ui->dias_semana_text->setVisible(false);
+        ui->horas_que_se_guardan_text->setVisible(false);
+    }
+}
+

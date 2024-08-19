@@ -115,6 +115,8 @@ private slots:
 
     void onStatus(Status::e status, QString errorMessage);
 
+    void on_check_detalle_stateChanged(int arg1);
+
 private:
 
     Ui::AsistenciaSuper *ui;

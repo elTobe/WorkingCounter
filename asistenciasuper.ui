@@ -474,42 +474,80 @@ a este empleado</string>
            <string>Resumen</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="0" rowspan="4">
+           <item row="1" column="1">
+            <widget class="QPushButton" name="boton_texto">
+             <property name="text">
+              <string>Ver en texto</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QCalendarWidget" name="calendarWidget">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>7</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="minimumDate">
+              <date>
+               <year>2024</year>
+               <month>1</month>
+               <day>7</day>
+              </date>
+             </property>
+             <property name="verticalHeaderFormat">
+              <enum>QCalendarWidget::ISOWeekNumbers</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="combo_nombres">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="resumen_texto">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" rowspan="5">
             <layout class="QGridLayout" name="gridLayout_2">
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_5">
-               <property name="font">
-                <font>
-                 <family>Century Gothic</family>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Horas totales :</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="0">
-              <widget class="QLabel" name="label">
-               <property name="font">
-                <font>
-                 <family>Century Gothic</family>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Horas para dia extra :</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
              <item row="5" column="0">
-              <widget class="QLabel" name="label_11">
+              <widget class="QLabel" name="horas_guardadas_extra_text">
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -541,8 +579,8 @@ a este empleado</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
-              <widget class="QLabel" name="horas_semana_totales">
+             <item row="1" column="0">
+              <widget class="QLabel" name="horas_semana_totales_text">
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -550,77 +588,7 @@ a este empleado</string>
                 </font>
                </property>
                <property name="text">
-                <string>N/A</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="9" column="0">
-              <widget class="QLabel" name="label_16">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_17">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0" colspan="2">
-              <widget class="QLabel" name="titulo">
-               <property name="font">
-                <font>
-                 <family>Century Gothic</family>
-                 <pointsize>12</pointsize>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Esta semana : </string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="0">
-              <widget class="QLabel" name="label_14">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <family>Century Gothic</family>
-                 <pointsize>15</pointsize>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Dias a pagar : </string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_6">
-               <property name="font">
-                <font>
-                 <family>Century Gothic</family>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Dias :</string>
+                <string>Horas totales :</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -643,6 +611,52 @@ a este empleado</string>
                </property>
               </widget>
              </item>
+             <item row="10" column="0">
+              <widget class="QLabel" name="label_16">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="11" column="0">
+              <widget class="QLabel" name="dias_a_pagar_text">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>15</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Dias a pagar : </string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="horas_semana_extra_text">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Horas extra :</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
              <item row="8" column="1">
               <widget class="QLabel" name="horas_faltantes">
                <property name="font">
@@ -659,8 +673,65 @@ a este empleado</string>
                </property>
               </widget>
              </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_17">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
              <item row="3" column="1">
               <widget class="QLabel" name="horas_semana_extra">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>N/A</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" colspan="2">
+              <widget class="QLabel" name="titulo">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>12</pointsize>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Esta semana : </string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="11" column="1">
+              <widget class="QLabel" name="dias_totales">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>15</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>N/A</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QLabel" name="horas_que_se_guardan">
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -691,13 +762,44 @@ a este empleado</string>
                </property>
               </widget>
              </item>
-             <item row="10" column="1">
-              <widget class="QLabel" name="dias_totales">
+             <item row="7" column="0">
+              <widget class="QLabel" name="horas_que_se_guardan_text">
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
-                 <pointsize>15</pointsize>
-                 <bold>true</bold>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Horas a guardar : </string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="horas_faltantes_text">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Horas para dia extra :</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="horas_semana_totales">
+               <property name="font">
+                <font>
+                 <family>Century Gothic</family>
+                 <pointsize>12</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -708,8 +810,8 @@ a este empleado</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_7">
+             <item row="2" column="0">
+              <widget class="QLabel" name="dias_semana_text">
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -717,7 +819,7 @@ a este empleado</string>
                 </font>
                </property>
                <property name="text">
-                <string>Horas extra :</string>
+                <string>Dias :</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -740,8 +842,8 @@ a este empleado</string>
                </property>
               </widget>
              </item>
-             <item row="7" column="0">
-              <widget class="QLabel" name="label_3">
+             <item row="9" column="0">
+              <widget class="QLabel" name="salida_esperada_text">
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -749,15 +851,15 @@ a este empleado</string>
                 </font>
                </property>
                <property name="text">
-                <string>Horas a guardar : </string>
+                <string>Salida para dia extra :</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
-             <item row="7" column="1">
-              <widget class="QLabel" name="horas_que_se_guardan">
+             <item row="9" column="1">
+              <widget class="QLabel" name="salida_esperada">
                <property name="font">
                 <font>
                  <family>Century Gothic</family>
@@ -774,73 +876,10 @@ a este empleado</string>
              </item>
             </layout>
            </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="combo_nombres">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>12</pointsize>
-              </font>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QCalendarWidget" name="calendarWidget">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>7</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="minimumDate">
-              <date>
-               <year>2024</year>
-               <month>1</month>
-               <day>7</day>
-              </date>
-             </property>
-             <property name="verticalHeaderFormat">
-              <enum>QCalendarWidget::ISOWeekNumbers</enum>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="1">
-            <widget class="QLabel" name="resumen_texto">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
+            <widget class="QCheckBox" name="check_detalle">
              <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="boton_texto">
-             <property name="text">
-              <string>Ver en texto</string>
+              <string>Detalle de Horas</string>
              </property>
             </widget>
            </item>
